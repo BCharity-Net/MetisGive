@@ -9,6 +9,7 @@ Setting up Local Development
 Required:
 
 Node v14
+
 Git
 
 $ git clone https://github.com/BCharity-Net/MetisGive.git
