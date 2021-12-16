@@ -1,0 +1,55 @@
+import React from 'react'
+import styled from 'styled-components'
+import { Tag, Flex, Heading, Image } from '@pancakeswap/uikit'
+import { CommunityTag, CoreTag } from 'components/Tags'
+
+export interface ExpandableSectionProps {
+  lpLabel?: string
+  multiplier?: string
+  isCommunityFarm?: boolean
+  farmImage?: string
+  tokenSymbol?: string
+  swapPlatform?: string
+  hasFee?: boolean
+}
+
+const Wrapper = styled(Flex)`
+  svg {
+    margin-right: 4px;
+  }
+`
+
+const MultiplierTag = styled(Tag)`
+  margin-left: 4px;
+`
+const SwapTag = styled(Tag)`
+  margin-top: 5px;
+`
+
+const CardHeading: React.FC<ExpandableSectionProps> = ({
+  lpLabel,
+  multiplier,
+  isCommunityFarm,
+  farmImage,
+  tokenSymbol,
+  swapPlatform,
+  hasFee,
+}) => {
+  return (
+    <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
+      <Image src={`/images/BCharity-Images/version2/${farmImage}.png`} alt={tokenSymbol} width={64} height={64} />
+      <Flex flexDirection="column" alignItems="flex-end">
+        <Heading mb="4px">{lpLabel.split(' ')[0]}</Heading>
+        <Flex justifyContent="center">
+          {isCommunityFarm || hasFee ? <CommunityTag /> : <CoreTag />}
+          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
+        </Flex>
+        <SwapTag variant="primary" outline>
+          {swapPlatform}
+        </SwapTag>
+      </Flex>
+    </Wrapper>
+  )
+}
+
+export default CardHeading
